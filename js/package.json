@@ -1,0 +1,14 @@
+{
+  "name": "php-react",
+  "version": "1.0.0",
+  "description": "dynamic react components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Patrick Lamontagne",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0"
+  }
+}

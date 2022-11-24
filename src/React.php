@@ -20,11 +20,16 @@ class React
 
     public static function render(string $component, array $props = [], string $placeholder = '')
     {
+        echo self::build($component, $props, $placeholder);
+    }
+
+    public static function build(string $component, array $props = [], string $placeholder = '')
+    {
         self::setPlaceholder($placeholder);
         self::setComponent($component);
         self::setProps($props);
 
-        echo self::getMarkup();
+        return self::getMarkup();
     }
 
     public static function share($key, $value = null)
