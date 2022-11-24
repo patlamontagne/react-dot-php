@@ -1,0 +1,20 @@
+{
+    "name": "patlamontagne/php-react",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Patlamontagne\\PhpReact\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Pat L.",
+            "email": "dev@patricklamontagne.ca"
+        }
+    ],
+    "require": {}
+}
