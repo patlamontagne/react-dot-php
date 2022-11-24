@@ -1,0 +1,1 @@
+import{j as i,a as n}from"./index.6ab0872e.js";function c({title:l,cat:r,dog:e,food:d}){return i("div",{children:[n("h1",{children:l}),i("ul",{children:[i("li",{children:["I like my cat ",r]}),i("li",{children:["I love my dog ",e]}),i("li",{children:["My favorite food is ",d,"!"]})]})]})}export{c as default};
