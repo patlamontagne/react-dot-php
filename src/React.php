@@ -12,23 +12,19 @@ class React
 
     protected static $version;
 
+    protected static $placeholder;
+
     protected static $component;
 
-    protected static $id;
-    
     protected static $shared_props = [];
 
-    public static function render(string $component, array $props = [])
+    public static function render(string $component, array $props = [], string $placeholder = '')
     {
+        self::setPlaceholder($placeholder);
         self::setComponent($component);
         self::setProps($props);
 
         echo self::getMarkup();
-    }
-
-    public static function version(string $version = '')
-    {
-        self::$version = $version;
     }
 
     public static function share($key, $value = null)
@@ -46,6 +42,16 @@ class React
         }
     }
 
+    public static function version(string $version = '')
+    {
+        self::$version = $version;
+    }
+
+    protected static function setPlaceholder(string $placeholder)
+    {
+        self::$placeholder = $placeholder;
+    }
+
     protected static function setComponent(string $component)
     {
         self::$component = $component;
@@ -58,7 +64,7 @@ class React
         if (!isset($react_shared_data)) {
             $react_shared_data = [];
         }
-        
+
         $props = array_merge($props, $react_shared_data);
 
         array_walk_recursive($props, function (&$prop) {
@@ -73,6 +79,7 @@ class React
     protected static function getMarkup()
     {
         $className = self::$className;
+        $placeholder = self::$placeholder;
 
         $data = htmlspecialchars(
             json_encode([
@@ -85,6 +92,6 @@ class React
             true
         );
 
-        return "<div class=\"{$className}\" data-page=\"{$data}\"></div>";
+        return "<div class=\"{$className}\" data-react=\"{$data}\">{$placeholder}</div>";
     }
 }

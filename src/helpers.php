@@ -1,24 +1,5 @@
 <?php
 
-if (!function_exists('root_markup')) {
-    function root_markup(string $id = 'app', array $props = [], string $classes = '')
-    {
-        $classes = !empty($classes)
-            ? 'class="' . $classes . '"'
-            : '';
-
-        $props = htmlspecialchars(
-            json_encode($props),
-            ENT_QUOTES,
-            'UTF-8',
-            true
-        );
-
-        return "<div id=\"{$id}\" {$classes} data-page=\"{$props}\"></div>";
-    }
-}
-
-
 if (!function_exists('array_set')) {
     function array_set(&$array, $key, $value)
     {
