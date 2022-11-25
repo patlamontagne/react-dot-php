@@ -4,7 +4,7 @@ Dots are separated backend driven React components.
 
 What does it mean? It means you can add multiple single react components on your front-end and send them initial props right from your backend.
 
-It is intended for projects where you can't leverage inertiajs' SPA approach, or for existing server-side rendered projects where you just need to easily add some react interactivity without resorting to rebuilding the whole thing in react.
+`react-dot` is intended for projects where you can't leverage inertiajs' SPA approach, or for existing server-side rendered projects where you just need to easily add some react interactivity without resorting to rebuilding the whole thing in react.
 
 ### Javascript library
 
