@@ -1,39 +1,55 @@
-# React Dot
+# PHP adaptor for React-dot
 
-## Render a component
+# Rendering a dot 
 
 ```php
+use ReactDot\Dot;
+
 // will echo the component directly
-Dot::render('NavigationBar', ['title' => 'Welcome']);
+Dot::render('Layout/NavigationBar', ['mode' => 'dark']);
 
 // accepts functions
-Dot::render('NavigationBar', [
-    'title' => 'Welcome',
-    'user' =>  function() {
-        return get_user();
+Dot::render('Layout/NavigationBar', [
+    'mode' => 'dark',
+    // lazy
+    'auth' => function() {
+        if ($user = user()) {
+            return [
+                'user' => $user,
+            ];
+        }
     },
 ]);
 
 // get the resulting string
-echo Dot::build('NavigationBar', ['title' => 'Welcome']);
+echo Dot::build('Layout/NavigationBar', ['mode' => 'dark']);
 ```
 
-## Share props globally
+# Share props to all dots
 
 ```php
 // share a key/value prop
-Dot::share('user', get_user());
+Dot::share('mode', 'dark');
 
 // also accepts functions...
-Dot::share('user', function() {
-    return get_user();
+Dot::share('auth', function() {
+    if ($user = user()) {
+        return [
+            'user' => $user,
+        ];
+    }
 });
 
 // ...and arrays
 Dot::share([
     'title' => 'Welcome',
-    'user' => function() {
-        return get_user();
+    // lazy
+    'auth' => function() {
+        if ($user = user()) {
+            return [
+                'user' => $user,
+            ];
+        }
     },
 ]);
 

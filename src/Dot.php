@@ -10,13 +10,9 @@ class Dot
 
     protected static $props;
 
-    protected static $version;
-
     protected static $placeholder;
 
     protected static $component;
-
-    protected static $shared_props = [];
 
     public static function render(string $component, array $props = [], string $placeholder = '')
     {
@@ -57,11 +53,6 @@ class Dot
         }
     }
 
-    public static function version(string $version = '')
-    {
-        self::$version = $version;
-    }
-
     protected static function setPlaceholder(string $placeholder)
     {
         self::$placeholder = $placeholder;
@@ -99,7 +90,6 @@ class Dot
         $data = htmlspecialchars(
             json_encode([
                 'props'     => self::$props,
-                'version'   => self::$version,
                 'component' => self::$component,
             ]),
             ENT_QUOTES,
