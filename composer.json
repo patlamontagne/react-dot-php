@@ -1,7 +1,7 @@
 {
     "name": "patlamontagne/react-dot-php",
     "type": "library",
-    "description": "The PHP adapter for react-dot. Render discrete react components from your backend.",
+    "description": "The PHP adapter for react-dot.",
     "license": "MIT",
     "keywords": [
         "react",
@@ -22,5 +22,9 @@
             "email": "dev@patricklamontagne.ca"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^7.2|~8.0.0|~8.1.0|~8.2.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
