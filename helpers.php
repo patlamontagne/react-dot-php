@@ -1,5 +1,20 @@
 <?php
 
+if (! function_exists('react_dot')) {
+    /**
+     * ReactDot helper.
+     *
+     * @param  string  $component
+     * @param  array   $props
+     * @param  string  $placeholder
+     * @return string
+     */
+    function react_dot($component, $props = [], $placeholder = '')
+    {
+        return \ReactDot\Dot::build($component, $props, $placeholder);
+    }
+}
+
 if (!function_exists('array_set')) {
     function array_set(&$array, $key, $value)
     {

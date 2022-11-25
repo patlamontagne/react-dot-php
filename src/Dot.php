@@ -1,10 +1,10 @@
 <?php
 
-namespace Patlamontagne\PhpReact;
+namespace ReactDot;
 
 use Closure;
 
-class React
+class Dot
 {
     protected static $className = 'react-component';
 

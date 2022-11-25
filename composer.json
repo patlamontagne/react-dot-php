@@ -1,18 +1,24 @@
 {
-    "name": "patlamontagne/php-react",
+    "name": "patlamontagne/react-dot-php",
     "type": "library",
+    "description": "The PHP adapter for react-dot. Render discrete react components from your backend.",
     "license": "MIT",
+    "keywords": [
+        "react",
+        "wordpress",
+        "laravel"
+    ],
     "autoload": {
         "psr-4": {
-            "Patlamontagne\\PhpReact\\": "src/"
+            "ReactDot\\": "src/"
         },
         "files": [
-            "src/helpers.php"
+            "helpers.php"
         ]
     },
     "authors": [
         {
-            "name": "Pat L.",
+            "name": "Patrick Lamontagne",
             "email": "dev@patricklamontagne.ca"
         }
     ],
