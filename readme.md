@@ -2,6 +2,12 @@
 
 https://github.com/patlamontagne/react-dot
 
+## Installing
+
+```sh
+composer require patlamontagne/react-dot-php
+```
+
 ## Rendering a dot 
 
 ```php
