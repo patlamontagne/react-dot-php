@@ -6,7 +6,7 @@ use Closure;
 
 class Dot
 {
-    protected static $className = 'react-component';
+    protected static $className = 'react-dot';
 
     protected static $props;
 
