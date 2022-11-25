@@ -1,6 +1,8 @@
-# PHP adaptor for React-dot
+# PHP adapter for React-dot
 
-# Rendering a dot 
+https://github.com/patlamontagne/react-dot
+
+## Rendering a dot 
 
 ```php
 use ReactDot\Dot;
@@ -25,7 +27,7 @@ Dot::render('Layout/NavigationBar', [
 echo Dot::build('Layout/NavigationBar', ['mode' => 'dark']);
 ```
 
-# Share props to all dots
+## Share props to all dots
 
 ```php
 // share a key/value prop
