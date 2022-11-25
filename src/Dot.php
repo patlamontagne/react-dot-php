@@ -34,16 +34,26 @@ class Dot
 
     public static function share($key, $value = null)
     {
-        global $react_shared_data;
+        global $react_shared_props;
 
-        if (!isset($react_shared_data)) {
-            $react_shared_data = [];
+        if (!isset($react_shared_props)) {
+            $react_shared_props = [];
         }
 
         if (is_array($key)) {
-            $react_shared_data = array_merge($react_shared_data, $key);
+            
+            array_walk_recursive($key, function (&$prop) {
+                if ($prop instanceof Closure) {
+                    $prop = $prop();
+                }
+            });
+        
+            $react_shared_props = array_merge($react_shared_props, $key);
         } else {
-            array_set($react_shared_data, $key, $value);
+            if ($value instanceof Closure) {
+                $value = $value();
+            }
+            array_set($react_shared_props, $key, $value);
         }
     }
 
@@ -64,13 +74,13 @@ class Dot
 
     protected static function setProps(array $props)
     {
-        global $react_shared_data;
+        global $react_shared_props;
 
-        if (!isset($react_shared_data)) {
-            $react_shared_data = [];
+        if (!isset($react_shared_props)) {
+            $react_shared_props = [];
         }
 
-        $props = array_merge($props, $react_shared_data);
+        $props = array_merge($props, $react_shared_props);
 
         array_walk_recursive($props, function (&$prop) {
             if ($prop instanceof Closure) {
