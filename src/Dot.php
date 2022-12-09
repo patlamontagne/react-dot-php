@@ -6,22 +6,20 @@ use Closure;
 
 class Dot
 {
-    protected static $className = 'react-dot';
-
     protected static $props;
 
-    protected static $placeholder;
+    protected static $children;
 
     protected static $component;
 
-    public static function render(string $component, array $props = [], string $placeholder = '')
+    public static function render(string $component, array $props = [], string $children = '')
     {
-        echo self::build($component, $props, $placeholder);
+        echo self::build($component, $props, $children);
     }
 
-    public static function build(string $component, array $props = [], string $placeholder = '')
+    public static function build(string $component, array $props = [], string $children = '')
     {
-        self::setPlaceholder($placeholder);
+        self::setChildren($children);
         self::setComponent($component);
         self::setProps($props);
 
@@ -37,13 +35,12 @@ class Dot
         }
 
         if (is_array($key)) {
-            
             array_walk_recursive($key, function (&$prop) {
                 if ($prop instanceof Closure) {
                     $prop = $prop();
                 }
             });
-        
+
             $react_shared_props = array_merge($react_shared_props, $key);
         } else {
             if ($value instanceof Closure) {
@@ -53,9 +50,9 @@ class Dot
         }
     }
 
-    protected static function setPlaceholder(string $placeholder)
+    protected static function setChildren(string $children)
     {
-        self::$placeholder = $placeholder;
+        self::$children = $children;
     }
 
     protected static function setComponent(string $component)
@@ -84,19 +81,27 @@ class Dot
 
     protected static function getMarkup()
     {
-        $className = self::$className;
-        $placeholder = self::$placeholder;
+        $component = self::$component;
+        $children = self::$children;
 
-        $data = htmlspecialchars(
-            json_encode([
-                'props'     => self::$props,
-                'component' => self::$component,
-            ]),
-            ENT_QUOTES,
-            'UTF-8',
-            true
-        );
+        $data = "data-dot=\"{$component}\"";
 
-        return "<div class=\"{$className}\" data-react=\"{$data}\">{$placeholder}</div>";
+        // convert array and objects to json
+        foreach (self::$props as $key => $value) {
+            if (is_array($value) || is_object($value)) {
+                $value = htmlspecialchars(
+                    json_encode($value),
+                    ENT_QUOTES,
+                    'UTF-8',
+                    true
+                );
+            }
+
+            $data = "{$data} data-prop-{$key}=\"{$value}\"";
+        }
+
+        return <<<HTML
+                <div {$data}>{$children}</div>
+            HTML;
     }
 }
