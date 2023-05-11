@@ -8,20 +8,23 @@ class Dot
 {
     protected static $props;
 
+    protected static $attributes;
+
     protected static $children;
 
     protected static $component;
 
-    public static function render(string $component, array $props = [], string $children = '')
+    public static function render(string $component, array $props = [], string $children = '', string $attributes = '')
     {
-        echo self::build($component, $props, $children);
+        echo self::build($component, $props, $children, $attributes);
     }
 
-    public static function build(string $component, array $props = [], string $children = '')
+    public static function build(string $component, array $props = [], string $children = '', string $attributes = '')
     {
         self::setChildren($children);
         self::setComponent($component);
         self::setProps($props);
+        self::setAttributes($attributes);
 
         return self::getMarkup();
     }
@@ -79,12 +82,18 @@ class Dot
         self::$props = $props;
     }
 
+    protected static function setAttributes(string $attributes)
+    {
+        self::$attributes = $attributes;
+    }
+
     protected static function getMarkup()
     {
+        $attributes = self::$attributes;
         $component = self::$component;
         $children = self::$children;
 
-        $data = "data-dot=\"{$component}\"";
+        $data = "{$attributes} data-dot=\"{$component}\"";
 
         // convert array and objects to json
         foreach (self::$props as $key => $value) {
